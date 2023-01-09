@@ -12,15 +12,19 @@ public interface ProductRepository {
 
 	@Select("""
 			<script>
-			SELECT p.*,
+			SELECT P.*,
+			C.name AS comName,
+			C.address AS comAddr,
 			MIN(fee) AS extra__minFee
-			FROM product AS p
+			FROM product AS P
+			INNER JOIN company AS C
+			ON P.companyId = C.id
 			WHERE 1
 			<if test="searchKeyword != ''">
 				AND (
-					name LIKE CONCAT('%', #{searchKeyword}, '%')
+					C.name LIKE CONCAT('%', #{searchKeyword}, '%')
 					OR
-					address LIKE CONCAT('%', #{searchKeyword}, '%')
+					C.address LIKE CONCAT('%', #{searchKeyword}, '%')
 				)
 			</if>
 			<if test="low_price != 1">
@@ -53,7 +57,7 @@ public interface ProductRepository {
 					accommodationType = '게스트하우스'
 				</if>
 			</if>
-			GROUP BY name, address
+			GROUP BY C.name, C.address
 			<if test="order_by != ''">
 				<choose>
 					<when test="order_by == 'lowPrice'">
@@ -66,7 +70,7 @@ public interface ProductRepository {
 			</if>
 			</script>
 			""")
-	List<Product> getForPrintproducts(String searchKeyword, String order_by, String motelType, String hotelType, String pensionType, String geusthouseType, int low_price, int high_price);
+	List<Product> getForPrintProducts(String searchKeyword, String order_by, String motelType, String hotelType, String pensionType, String geusthouseType, int low_price, int high_price);
 
 	@Select("""
 			SELECT p.*,
