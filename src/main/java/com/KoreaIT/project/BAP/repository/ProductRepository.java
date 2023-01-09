@@ -85,5 +85,5 @@ public interface ProductRepository {
 				FROM product
 				WHERE companyId = #{companyId}
 			""")
-	List<Product> getproductsAtCompanyId(int companyId);
+	List<Product> getProductsByCompanyId(int companyId);
 }

@@ -24,8 +24,8 @@ public class ProductService {
 		return productRepository.getForPrintproduct(id);
 	}
 
-	public List<Product> getproductsAtCompanyId(int companyId) {
-		return productRepository.getproductsAtCompanyId(companyId);
+	public List<Product> getProductsByCompanyId(int companyId) {
+		return productRepository.getProductsByCompanyId(companyId);
 	}
 
 }
