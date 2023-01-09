@@ -7,35 +7,53 @@
 <c:set var="pageBaseUri" value="${pageBaseUri}?searchKeyword=${param.searchKeyword}"/>
 <c:set var="pageBaseUri" value="${pageBaseUri}&low_price=${param.low_price}"/>
 <c:set var="pageBaseUri" value="${pageBaseUri}&high_price=${param.high_price}"/>
+<c:set var="order_by" value="${param.order_by}"/>
+<c:set var="accommodationType1" value="${param.accommodationType1}"/>
 
 <section class="mt-20">
-	<div class="con-3 flex flex-row mx-auto px-3 bg-red-200">
-		<div class="side-bar-1 bg-green-200 mr-6">
+	<div class="con-3 flex flex-row mx-auto px-3">
+		<div class="side-bar-1 mr-6 p-5 border border-gray-300 rounded-md">
 			<form action="../product/list">
+				<span class="text-base font-semibold">상세조건</span>
+			
 				<input type="hidden" name="searchKeyword" value="${param.searchKeyword}" />
 				<input type="hidden" name="order_by" value="${param.order_by}" />
 				
-				<div class="form-control">
-				  <label class="cursor-pointer label">
-				    <span class="label-text">Remember me</span>
-				    <input name="motel" type="radio" checked="checked" class="checkbox checkbox-accent" />
+				<div class="accommodationType-box flex flex-col mt-5">
+					<span class="text-sm font-semibold text-gray-500 mb-2">숙소 유형</span>
+				  <label class="cursor-pointer flex items-center h-8">
+				    <input type="checkbox" name="motelType" class="checkbox checkbox-sm" />
+				    <span class="text-sm ml-2">모텔</span> 
 				  </label>
-				  <label class="cursor-pointer label">
-				    <span class="label-text">Remember me</span>
-				    <input type="radio" checked="checked" class="checkbox checkbox-accent" />
+				  <label class="cursor-pointer flex items-center h-8">
+				    <input type="checkbox" name="hotelType" class="checkbox checkbox-sm"/>
+				    <span class="text-sm ml-2">호텔</span> 
 				  </label>
-				  <label class="cursor-pointer label">
-				    <span class="label-text">Remember me</span>
-				    <input type="radio" checked="checked" class="checkbox checkbox-accent" />
+				  <label class="cursor-pointer flex items-center h-8">
+				    <input type="checkbox" name="pensionType" class="checkbox checkbox-sm" />
+				    <span class="text-sm ml-2">펜션</span> 
 				  </label>
+				  <label class="cursor-pointer flex items-center h-8">
+				    <input type="checkbox" name="geusthouseType" class="checkbox checkbox-sm" />
+				    <span class="text-sm ml-2">게스트하우스</span> 
+				  </label>
+		  	</div>
+				
+				<div class="pricing-box flex flex-col mt-5">
+					<span class="text-sm font-semibold text-gray-500 mb-2">가격</span>
+					<ul>
+						<li>
+							<input type="text" name="low_price" class="input input-bordered input-sm" placeholder="최소"/>
+						</li>
+					</ul>
+					<ul class="mt-1">
+						<li>
+							<input type="text" name="high_price" class="input input-bordered input-sm" placeholder="최대"/>
+						</li>
+					</ul>
 				</div>
 				
-				<div class="pricing-box">
-					<input type="text" name="low_price" class="input input-bordered"/>
-					<input type="text" name="high_price" class="input input-bordered"/>
-				</div>
-				
-				<button type="submit" class="btn btn-primary">적용</button>
+				<button type="submit" class="btn btn-primary w-full mt-5">적용</button>
 			</form>
 		</div>
 		<div class="table table-fixed">
@@ -48,7 +66,7 @@
           <col width="50" />
           <col width="150" />
           <col width="150" />
-          <col width="50"/>
+          <col />
         </colgroup>
         <thead>
         	<tr>	

@@ -13,7 +13,7 @@ public class Product {
 	private String updateDate;
 	private String name;
 	private String address;
-	private String roopType;
+	private String roomType;
 	private int numberOfRooms;
 	private int hostId;
 	private int fee;

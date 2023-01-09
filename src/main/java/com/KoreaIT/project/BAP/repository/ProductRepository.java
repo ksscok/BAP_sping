@@ -24,10 +24,34 @@ public interface ProductRepository {
 				)
 			</if>
 			<if test="low_price != 1">
-			AND fee <![CDATA[>=]]> #{low_price}
+				AND fee <![CDATA[>=]]> #{low_price}
 			</if>
 			<if test="high_price != 999999999">
-			AND fee <![CDATA[<=]]> #{high_price}
+				AND fee <![CDATA[<=]]> #{high_price}
+			</if>
+			<if test="motelType != '' || hotelType != '' || pensionType != '' || geusthouseType != ''">
+				AND
+				<if test="motelType != ''">
+					accommodationType = '모텔'
+				</if>
+				<if test="hotelType != ''">
+					<if test="motelType != ''">
+					OR
+					</if>
+					accommodationType = '호텔'
+				</if>
+				<if test="pensionType != ''">
+					<if test="motelType != '' || hotelType != ''">
+					OR
+					</if>
+					accommodationType = '펜션'
+				</if>
+				<if test="geusthouseType != ''">
+					<if test="motelType != '' || hotelType != '' || pensionType != ''">
+					OR
+					</if>
+					accommodationType = '게스트하우스'
+				</if>
 			</if>
 			GROUP BY name, address
 			<if test="order_by != ''">
@@ -42,6 +66,6 @@ public interface ProductRepository {
 			</if>
 			</script>
 			""")
-	List<Product> getForPrintproducts(String searchKeyword, String order_by, int low_price, int high_price);
+	List<Product> getForPrintproducts(String searchKeyword, String order_by, String motelType, String hotelType, String pensionType, String geusthouseType, int low_price, int high_price);
 
 }
