@@ -46,7 +46,7 @@ public class UsrProductController {
 		
 		Product product = productService.getForPrintproduct(companyId);
 		
-		List<Product> products = productService.getproductsAtCompanyId(companyId);
+		List<Product> products = productService.getProductsByCompanyId(companyId);
 		
 		model.addAttribute("product", product);
 		model.addAttribute("products", products);

@@ -9,13 +9,33 @@
 <c:set var="pageBaseUri" value="${pageBaseUri}&high_price=${param.high_price}" />
 
 <script>
-	$('.saving').click(change_bgc);
+// 	$('.saving').click(change_bgc);
+
+	let changeSaving = false;
 
 	function change_bgc() {
-		// 		$('.saving').children().removeClass(fa-regular);
+		changeSaving = true;
+// 		$('.saving').children().removeClass(fa-regular);
 		// 		alert($('.saving').children().classList);
-		alert("안녕");
+		alert(changeSaving);
 	}
+	
+	$('.modal').click(function(){
+		  // $('.layer').show(); 
+		  $('.layer').css('display','block'); 
+		  $('.layer-bg').css('display','block'); 
+		});
+
+		$('.close-btn').click(function(){
+		  // $('.layer').hide(); 
+		  $('.layer').css('display','none'); 
+		  $('.layer-bg').css('display','none');
+		});
+
+		$('.layer-bg').click(function(){
+		  $('.layer').css('display','none'); 
+		  $('.layer-bg').css('display','none');
+		});
 </script>
 
 <section class="my-20">
@@ -36,17 +56,15 @@
 				<div class="company-body">
 					<div class="text-3xl">${product.comName}</div>
 					<div class="text-lg my-2">${product.comAddr}</div>
-					<div><img src="https://image.goodchoice.kr/resize_490x348/affiliate/2016/06/22/5769f8085f3a2.jpg" alt="" /></div>
 				</div>
-				<div class="flex">
+				<div class="flex bg-red-400 my-2">
 					<div>찜하기</div>
-					<a id="demo" href="#" class="saving mx-2">
-						<i class="fa-regular fa-heart"></i>
-					</a>
+					<button class="saving mx-2 mt-1 flex content-start" onclick="change_bgc();"><i class="fa-regular fa-heart"></i></button>
 					<!-- 					 onclick="change_bgc();" -->
 					<i class="fa-solid fa-heart"></i>
 				</div>
 			</div>
+			<div><img src="https://image.goodchoice.kr/resize_490x348/affiliate/2016/06/22/5769f8085f3a2.jpg" alt="" /></div>
 			<c:forEach var="product" items="${products}" varStatus="status">
 				<div id="${status.count }" class="room-body flex border-gray rounded-lg p-6 my-4">
 					<div><img class="w-80" src="https://image.goodchoice.kr/resize_370x220/affiliate/2016/06/22/5769f8523df2b.jpg" alt="" /></div>
@@ -56,10 +74,19 @@
 							<div class="text-base font-bold">가격</div>
 							<div class="text-lg">${product.fee}</div>
 						</div>
-						<button class="flex justify-between w-full my-4">
+						<button class="modal flex justify-between w-full my-4">
 							<div class="">객실 이용 안내</div>
 							<div class="">&gt;</div>
 						</button>
+						
+						<div class="layer">
+						  <h2 class="title">title</h2>
+						  <div class="body">Lorem</div>
+						  <button class="close-btn">close</button>
+						</div>
+						
+						<div class="layer-bg"></div>
+						
 						<button class="w-full text-center btn btn-active btn-secondary">예약</button>
 					</div>
 				</div>
