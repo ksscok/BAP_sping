@@ -36,4 +36,21 @@ public class UsrProductController {
 		
 		return "usr/product/list";
 	}
+	
+	@RequestMapping("/usr/product/detail")
+	public String showDetail(Model model, int companyId,
+			@RequestParam(defaultValue="") String searchKeyword,
+			@RequestParam(defaultValue="") String order_by,
+			@RequestParam(defaultValue="1") int low_price,
+			@RequestParam(defaultValue="999999999") int high_price) {
+		
+		Product product = productService.getForPrintproduct(companyId);
+		
+		List<Product> products = productService.getproductsAtCompanyId(companyId);
+		
+		model.addAttribute("product", product);
+		model.addAttribute("products", products);
+		
+		return "usr/product/detail";
+	}
 }

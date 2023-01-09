@@ -68,4 +68,22 @@ public interface ProductRepository {
 			""")
 	List<Product> getForPrintproducts(String searchKeyword, String order_by, String motelType, String hotelType, String pensionType, String geusthouseType, int low_price, int high_price);
 
+	@Select("""
+			SELECT p.*,
+					c.name AS comName, 
+					c.address AS comAddr
+				FROM product AS p
+				INNER JOIN company AS c
+				ON p.companyId = c.id
+				WHERE p.companyId = #{companyId}
+				GROUP BY p.companyId
+			""")
+	Product getForPrintproduct(int companyId);
+
+	@Select("""
+			SELECT *
+				FROM product
+				WHERE companyId = #{companyId}
+			""")
+	List<Product> getproductsAtCompanyId(int companyId);
 }

@@ -81,7 +81,7 @@
 						<tr>
 							<td>${product.id}</td>
 							<td>
-								<a href="../product/detail?id=${product.id}">${product.name}</a>
+								<a href="../product/detail?companyId=${product.companyId}">${company.name}</a>
 							</td>
 							<td>${product.address}</td>
 							<td>${product.extra__minFee}</td>
