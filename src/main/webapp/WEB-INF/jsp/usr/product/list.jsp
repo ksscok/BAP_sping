@@ -81,9 +81,9 @@
 						<tr>
 							<td>${product.id}</td>
 							<td>
-								<a href="../product/detail?companyId=${product.companyId}">${company.name}</a>
+								<a href="../product/detail?companyId=${product.companyId}">${product.comName}</a>
 							</td>
-							<td>${product.address}</td>
+							<td>${product.comAddr}</td>
 							<td>${product.extra__minFee}</td>
 						</tr>
 					</c:forEach>
